@@ -277,7 +277,7 @@ int main()
 
 	/* Evolution For BossMonster Success! Include 20 stat points(strength, dexterity, intelligence, lucky) */
 	/* Write your codes*/
-
-
+	
+	/* test */
 	return 0;
 }
