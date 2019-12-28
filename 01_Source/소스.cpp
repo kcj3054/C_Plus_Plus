@@ -172,11 +172,13 @@ public:
 	}
 };
 
+//무기 강화를 위해서 무기 레벨도 정하였습니다.
 class weapon {
 	//job, name, physical_attack_point, magic_attack_point, min_need_strength,min_need_dexterity, min_need_intelligence, min_need_lucky
 private:
 	string job;
 	string name;
+	int w_level;
 	int physical_attack_point;
 	int magic_attack_point;
 	int min_need_strength;
@@ -185,11 +187,12 @@ private:
 	int min_need_lucky;
 
 public:
-	weapon(string job_in, string name_in, int physical_attack_point_in, int magic_attack_point_in, int min_need_strength_in,
+	weapon(string job_in, string name_in, int w_level_in, int physical_attack_point_in, int magic_attack_point_in, int min_need_strength_in,
 		int min_need_dexterity_in, int min_need_intelligence_in, int min_need_lucky_in)
 	{
 		job = job_in;
 		name = name_in;
+		w_level = w_level_in;
 		physical_attack_point = physical_attack_point_in;
 		magic_attack_point = magic_attack_point_in;
 		min_need_strength = min_need_strength_in;
@@ -197,12 +200,54 @@ public:
 		min_need_intelligence = min_need_intelligence_in;
 		min_need_lucky = min_need_lucky_in;
 	}
+
+	void set_w_level(int w_level_in)
+	{
+		w_level = w_level_in;
+	}
+
+	int get_w_level_in()
+	{
+		return w_level;
+	}
+
+	void set_physical_attack_point(int physical_attack_point_in)
+	{
+		physical_attack_point = physical_attack_point_in;
+	}
+	int get_physical_attack_point()
+	{
+		return physical_attack_point;
+	}
+
+	void set_magic_attack_point(int magic_attack_point_in)
+	{
+		magic_attack_point = magic_attack_point_in;
+	}
+	int get_magic_attack_point()
+	{
+		return magic_attack_point;
+	}
+	//job, name, physical_attack_point, magic_attack_point, min_need_strength,min_need_dexterity, min_need_intelligence, min_need_lucky
+	void show_status() {
+		cout << "sword's Status" << '\n';
+		cout << "============================" << '\n';
+		cout << "job : " << job << '\n';
+		cout << "name : " << name << '\n';
+		cout << "w_level : " << w_level << '\n';
+		cout << "physical_attack_point : " << physical_attack_point << '\n';
+		cout << "magic_attack_point : " << magic_attack_point << '\n';
+		cout << "============================" << '\n';
+	
+	}
 };
 
+//몬스터도 보스몬스터가 되니 레벨을 처리해주었습니다.
 class monster {
 	//name, physical_attack_point, magic_attack_point, health_point, mana_point, strength, dexterity, intelligence, lucky,
 private:
 	string name;
+	int m_level;
 	int physical_attack_point;
 	int magic_attack_point;
 	int health_point;
@@ -214,6 +259,7 @@ private:
 
 public:
 	monster (string name_in,
+		int m_level_in,
 		int physical_attack_point_in,
 		int magic_attack_point_in,
 		int health_point_in,
@@ -224,15 +270,74 @@ public:
 		int lucky_in)
 	{
 		name = name_in;
+		m_level  = m_level_in;
 		physical_attack_point = physical_attack_point_in;
 		magic_attack_point = magic_attack_point_in;
 		health_point = health_point_in;
 		mana_point = mana_point_in;
+
 		strength = strength_in;
 		dexterity = dexterity_in;
 		intelligence = intelligence_in;
 		lucky = lucky_in;
 	}
+
+	void set_m_level(int m_level_in)
+	{
+		m_level = m_level_in;
+	}
+	int get_m_level()
+	{
+		return m_level;
+	}
+
+	void set_strength(int strength_in)
+	{
+		strength = strength_in;
+	}
+	int get_strength()
+	{
+		return strength;
+	}
+
+	void set_dexterity(int dexterity_in)
+	{
+		dexterity = dexterity_in;
+	}
+	int get_dexterity()
+	{
+		return dexterity;
+	}
+
+	void set_intelligence(int intelligence_in)
+	{
+		intelligence = intelligence_in;
+	}
+	int get_intelligence()
+	{
+		return intelligence;
+	}
+
+	void set_lucky(int lucky_in)
+	{
+		lucky = lucky_in;
+	}
+	int get_lucky()
+	{
+		return lucky;
+	}
+
+	void show_status() {
+		cout << "Monster's Status" << '\n';
+		cout << "============================" << '\n';
+		cout << "m_level : " << m_level << '\n';
+		cout << "strength : " << strength << '\n';
+		cout << "dexterity : " << dexterity << '\n';
+		cout << "intelligence : " << intelligence << '\n';
+		cout << "lucky : " << lucky << '\n';
+		cout << "============================" << '\n';
+	}
+	
 };
 
 
@@ -266,18 +371,29 @@ int main()
 
 	/* Weapon */
 	//job, name, physical_attack_point, magic_attack_point, min_need_strength,min_need_dexterity, min_need_intelligence, min_need_lucky
-	weapon sword("magician", "staff", 100, 100, 5, 5, 5, 5);
+	weapon sword("magician", "staff",1, 100, 100, 5, 5, 5, 5);
 
 	/* Reinforcement Once Success! Get 10 stat points(physical_attack_point, magic_attack_point) */
 	/* Write your codes*/
+	//강황 성공 code..
 
+	sword.set_w_level(sword.get_w_level_in() + 1);
+	sword.set_physical_attack_point(sword.get_physical_attack_point() + 5);
+	sword.set_magic_attack_point(sword.get_magic_attack_point() + 5);
+
+	sword.show_status();
 	/* Monster */
 	//name, physical_attack_point, magic_attack_point, health_point, mana_point, strength, dexterity, intelligence, lucky
-	monster mon("mon_king", 10, 10, 100, 100, 10, 10, 10, 10);
+	monster mon("mon_king", 1, 10, 10, 100, 100, 10, 10, 10, 10);
 
 	/* Evolution For BossMonster Success! Include 20 stat points(strength, dexterity, intelligence, lucky) */
 	/* Write your codes*/
-	
-	/* test */
+	mon.set_m_level(mon.get_m_level() + 1);
+	mon.set_strength(mon.get_strength() + 5);
+	mon.set_dexterity(mon.get_dexterity() + 5);
+	mon.set_intelligence(mon.get_intelligence() + 5);
+	mon.set_lucky(mon.get_lucky() + 5);
+
+	mon.show_status();
 	return 0;
 }
